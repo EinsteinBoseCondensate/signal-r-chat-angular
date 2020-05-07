@@ -1,0 +1,45 @@
+<div class="main-form">
+    <mat-grid-list cols="3" rowHeight="100px">
+        <mat-grid-tile [rowspan]=2
+        [colspan]=2>
+        {{isLogin ? 'Log in' : 'Register'}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-slide-toggle (click)="toggleWindow();">Slide to {{!isLogin ? 'Log in' : 'Register'}}</mat-slide-toggle>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]=2>
+            
+        </mat-grid-tile>
+        <mat-grid-tile
+        [colspan]=2
+        [rowspan]=2>
+            <form [formGroup]="options">
+                <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Username</mat-label>
+                    <input matInput id="username">
+                </mat-form-field>
+                <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Password</mat-label>
+                    <input matInput id="password">
+                </mat-form-field>
+                <mat-form-field *ngIf="!isLogin" appearance="" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" id="email">
+                </mat-form-field>
+                <!-- <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
+                    [floatLabel]="floatLabelControl.value">
+                    <mat-select required>
+                        <mat-option>-- None --</mat-option>
+                        <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                    <mat-label>
+                        <mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i>
+                    </mat-label>
+                </mat-form-field> -->
+            </form>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]=2>
+            <button mat-button (click)="submitData();">Submit</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

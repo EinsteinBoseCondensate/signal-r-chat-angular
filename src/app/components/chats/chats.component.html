@@ -1,0 +1,40 @@
+<div class="main-form">
+    <mat-grid-list cols="4" rowHeight="8:1">
+        <!-- <mat-grid-list cols="4" [rowHeight]="rowHeight+'px'"> -->
+        <mat-grid-tile [rowspan]=2 [colspan]=4 class="top-chat-header">
+            {{'Register'}}
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]=14 [colspan]=1 class="left-chat-panel">
+
+            <mat-grid-list [cols]="1" class="inner-lef-chat-panel" rowHeight="50px" >
+                <mat-grid-tile [rowspan]=1 class="single-chat" *ngFor="let item of items">
+                    <mat-slide-toggle #slider name="slider">Slide to nothing, ROW {{item}}</mat-slide-toggle>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]=11 [colspan]=3 class="right-chat-panel">
+            <p>Messages section</p>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]=3 [rowspan]=3 class="bottom-chat-panel">
+            <mat-form-field appearance="fill" class="ultra-wide" [floatLabel]="floatLabelControl.value">
+                <mat-label>Username</mat-label>
+                <input matInput id="username">
+            </mat-form-field>
+            <!-- <p>Writing Section, bitch</p> -->
+            <!-- <form [formGroup]="options">
+                <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Username</mat-label>
+                    <input matInput id="username">
+                </mat-form-field>
+                <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Password</mat-label>
+                    <input matInput id="password">
+                </mat-form-field>
+                <mat-form-field *ngIf="!isLogin" appearance="" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" id="email">
+                </mat-form-field>
+            </form> -->
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
