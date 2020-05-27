@@ -83,9 +83,9 @@ export class ChatService {
         this.router.navigate(['/chats']);
         this.onConversationSummoned.emit(conversation);
     }
-    manageNewConversationState(id: Guid){
+    manageNewConversationState(group: Group){
         this.router.navigate(['/chats']);
-        this.onConversationCreation.emit(id);
+        this.onConversationCreation.emit(group);
     }
     
 

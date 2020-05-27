@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/modules/shared-services/auth/authService';
 import { SnackBarService } from 'src/app/modules/shared-services/UI/snack-bar-service';
 import { Guid } from 'guid-typescript';
 import { SignalRService } from 'src/app/modules/shared-services/signal-r/signalrService';
-import { Group, User } from 'src/app/models/Backend/user-lazy-loaded';
+import { Group, User, Friendship } from 'src/app/models/Backend/user-lazy-loaded';
 
 @Component({
   selector: 'app-friends',
@@ -18,8 +18,8 @@ export class FriendsComponent implements OnInit {
 
   options: FormGroup;
   users: any[];
-  friends: any[];
-  pendingFriends: any[];
+  friends: Friendship[];
+  pendingFriends: Friendship[];
   fxFlexForLeftColumn: string = "0 0 0%";
   fxFlexForRightColumn: string = "0 0 100%";
   hideRequiredControl = new FormControl(false);
@@ -48,24 +48,23 @@ export class FriendsComponent implements OnInit {
         console.log(`Exception at processing fetched users \n ${JSON.stringify(e)}\n${JSON.stringify(data)}`)
       }
     });
-    this.friends = this.authService.sLS.secureLS.get("IL").frienships.filter(f => !f.pending).map(f => f.friendName);
+    this.friends = this.authService.sLS.secureLS.get("IL").frienships.filter(f => !f.pending) as Friendship[];
    
-    this.pendingFriends = this.authService.sLS.secureLS.get("IL").frienships.filter(f => f.pending).map(f => f.friendName);
+    this.pendingFriends = this.authService.sLS.secureLS.get("IL").frienships.filter(f => f.pending) as Friendship[];
     console.log(JSON.stringify(this.pendingFriends));
   }
   async waitAndSearch(arg: string) {
     await this.chatService.waitAndFetchUserNames(arg);
   }
-  createOrGetConversation(friendId: Guid){
-    let conversation: Group[] = this.authService.sLS.secureLS.get("IL").groups
+  createOrGetConversation(friend: Friendship){
+    let conversation: Group = this.authService.sLS.secureLS.get("IL").groups
                           .filter((g: Group) => g.groupUsers.length == 2 
-                          && g.groupUsers.map((u: User) => u.id).indexOf(friendId))[0];
+                          && g.groupUsers.map((u: User) => u.id).indexOf(friend.id))[0];
     if(conversation != undefined ){
-      //TODO: LET SOME MAGIC HAPPEN WHEN FOUND CONVERSATION GETS LOADED
-      this.chatService.manageSummonedConversationState();
+      this.chatService.manageSummonedConversationState(conversation);
     }else{
       //CREATE IN-MEMORY REPRESENTATION OF GROUP/CONVERSATION AND STORE IT IN DB WHEN FIRST MESSAGE IS SENT
-      this.chatService.manageNewConversationState();
+      this.chatService.manageNewConversationState({ name: friend.friendName, groupUser: [{ id: this.authService.jwtService.getIdFromToken() }, { id: friend.id }] as unknown as User[] } as unknown as Group);
     }
   }
   addFriend(id: Guid){

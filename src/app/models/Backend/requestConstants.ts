@@ -1,7 +1,8 @@
 import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
-const BaseEndpoint = "http://192.168.8.108:5000/";//43.32:5001/";
+const BaseEndpoint = `http://${environment.host}/`;
 export const EndPoints =  {
   Register: `${BaseEndpoint}api/Users/register`,
     Login: `${BaseEndpoint}api/Users/authenticate`,

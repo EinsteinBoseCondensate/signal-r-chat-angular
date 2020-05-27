@@ -1,13 +1,13 @@
 import { EventEmitter, Injectable, OnInit, Output } from '@angular/core';
 import { HttpRequest, HttpEvent, HttpEventType, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EndPoints } from '../../../models/Backend/requestConstants';
-import { UserLogin } from '../../../components/log-in-register/model/user';
 import { tokenResult } from '../../../components/log-in-register/model/tokenResult';
 import { JwtService } from './jwt-service';
 import { Router } from '@angular/router';
 import { SnackBarService } from '../UI/snack-bar-service';
-import { InitialLoad } from 'src/app/models/Backend/user-lazy-loaded';
+import { InitialLoad, User } from 'src/app/models/Backend/user-lazy-loaded';
 import { SecureLsService } from '../helpers/secure-ls';
+import { UserLogin } from 'src/app/components/log-in-register/model/user';
 
 
 @Injectable({
@@ -70,7 +70,7 @@ export class AuthService {
                 this.sLS.secureLS.set("Bearer", res.result.token);
                 try{
                     this.sLS.secureLS.set("IL", res.result.initialLoad);
-                    this.currentUser = {id: this.jwtService.getIdFromToken(), name: this.jwtService.getUserNameFromToken()};
+                    this.currentUser = {id: this.jwtService.getIdFromToken(), userName: this.jwtService.getUserNameFromToken()};
                 }catch(e){
                     console.log(JSON.stringify(e));
                 }
@@ -102,7 +102,7 @@ export class AuthService {
         if (p != undefined && p) {
             this.snackBarService.openSnackBar("Auth success", "login");
             this.loginSuccess.emit(this.jwtService.getUserNameFromToken());
-            this.currentUser = {id: this.jwtService.getIdFromToken(), name: this.jwtService.getUserNameFromToken()};
+            this.currentUser = {id: this.jwtService.getIdFromToken(), userName: this.jwtService.getUserNameFromToken()};
             this.router.navigate(["/chats"]);
             return true;
         //coming soon... password check
@@ -128,19 +128,10 @@ export class AuthService {
                 }
             }, (e: any) => {
                 this.isUserLogged = undefined;
-                if (e.status != undefined) {
                     if (e.status == 401) {
-                        this.isUserLogged = false;
-                        res(false);
-                    } else {
-                        this.isUserLogged = undefined;
-                        res(undefined);
-                    }
-                } else {
-                    this.isUserLogged = undefined;
-                    res(undefined);
-                }
-                res(undefined);
+                        this.isUserLogged = false;                        
+                    } 
+                    res(this.isUserLogged);
             }, () => { res(this.isUserLogged); }
             );
         });

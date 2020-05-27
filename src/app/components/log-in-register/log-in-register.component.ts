@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import { User } from './model/user';
+import { UserLogin } from './model/user';
 import { AuthService } from 'src/app/modules/shared-services/auth/authService';
 
 
@@ -34,12 +33,12 @@ export class LogInRegisterComponent implements OnInit {
   submitData() {
       this.authService.tryLoginRegister(this.user(), this.isLogin);
   }
-  user(): User {
+  user(): UserLogin {
     return {
       UserName: (document.querySelector('#username') as HTMLInputElement).value,
       Password: (document.querySelector('#password') as HTMLInputElement).value,
       Email: this.isLogin ? "" : (document.querySelector('#email') as HTMLInputElement).value
-    } as User
+    } as UserLogin
   }
 
 
