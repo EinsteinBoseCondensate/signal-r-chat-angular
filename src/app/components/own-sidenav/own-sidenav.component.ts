@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../log-in-register/model/user';
-import { AuthService } from 'src/app/services/authService';
+import { AuthService } from 'src/app/modules/shared-services/auth/authService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-own-sidenav',
@@ -9,9 +10,8 @@ import { AuthService } from 'src/app/services/authService';
 })
 export class OwnSidenavComponent implements OnInit {
   
-  constructor() {
-
-   }
+  constructor(private authServ: AuthService, 
+              private router: Router) {  }
   @Input() username: string;
   @Input() isUserLogged: boolean;
   ngOnInit() {
@@ -25,5 +25,9 @@ export class OwnSidenavComponent implements OnInit {
     }else{
       document.querySelector(".toggler").innerHTML = value.replace("lt;", "gt;");
     }
+  }
+  logOut(){
+    this.authServ.logOut();
+    this.router.navigate(["/access"]);
   }
 }

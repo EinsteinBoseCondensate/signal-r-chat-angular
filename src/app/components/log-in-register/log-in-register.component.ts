@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { User } from './model/user';
-import { AuthService } from 'src/app/services/authService';
+import { AuthService } from 'src/app/modules/shared-services/auth/authService';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class LogInRegisterComponent implements OnInit {
   floatLabelControl = new FormControl('always');
 
   isLogin: boolean;
-  constructor(fb: FormBuilder, authService: AuthService, private _snackBar: MatSnackBar) {
+  constructor(fb: FormBuilder, authService: AuthService) {
     this.authService = authService;
     this.isLogin = true;
     this.options = fb.group({
@@ -42,10 +42,6 @@ export class LogInRegisterComponent implements OnInit {
     } as User
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
+
 }
  

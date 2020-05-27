@@ -1,0 +1,105 @@
+<div class="main-form" fxLayout="column wrap" fxLayoutAlign="stretch">
+    <div class="top-controls-container top-chat-panel" fxFlex="1 1 10%" fxLayout="row wrap" fxLayoutAlign="center">
+        <div class="message-box-header" fxFlex="1 1 50%" fxLayout="column" fxLayoutAlign="center">
+            <div fxLayoutAlign="center" fxLayout="row">
+                <mat-form-field appearance="fill" class="input-right-margin" [floatLabel]="floatLabelControl.value">
+                    <mat-label id="message-box-label">Write your friend's name...</mat-label>
+                    <input matInput id="userSearch" #userSearch (change)="waitAndSearch(userSearch.value)">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="flex-flow-container header-container" fxFlex="1 1 50%" fxLayout="column " fxLayoutAlign="center">
+            {{'Find friends'}}
+        </div>
+    </div>
+    <div class="" fxFlex="1 1 90%" fxLayout="row wrap" fxLayoutAlign="center">
+        <div class="options-container right-chat-panel" [fxFlex]="fxFlexForLeftColumn" fxLayout="column wrap"
+            fxLayoutAlign="start">
+
+            <div id="friends-header" fxFlex="0 0 2em" fxLayout="row wrap" fxLayoutAlign="center">
+                <div class="name-label" fxLayout="row center" fxFlex="auto" fxLayoutAlign="end">
+
+                    <div fxLayout="column" fxFlex="auto" fxLayoutAlign="center">
+                        Search Results
+                    </div>
+                </div>
+            </div>
+            <div class="options-container " fxFlex="0 0 2em" fxLayout="row wrap" fxLayoutAlign="start" *ngFor="let user of users" >
+                <div class="add-icon" fxLayout="row" fxFlex="auto" fxLayoutAlign="start" (click)="addFriend(user.id)">
+                    <button mat-mini-fab color="accent">
+                        <mat-icon>games</mat-icon>
+                    </button>
+                    <span>add friend</span>
+                </div>
+
+                <div class="name-label" fxLayout="row center" fxFlex="auto" fxLayoutAlign="end">
+                    <div fxLayout="column" fxFlex="auto" fxLayoutAlign="center">
+                        {{user.userName}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="options-container " fxFlex="0 0 60px" fxLayout="row wrap" fxLayoutAlign="start" class="single-chat" *ngFor="let item of items">
+            <mat-slide-toggle #slider name="slider" id="item.name" (click)="setCurrentGroupName(item);">Slide to nothing, ROW {{item}}</mat-slide-toggle>
+        </div> -->
+
+
+        <div class="items-controls-container inner-right-chat-panel" [fxFlex]="fxFlexForRightColumn" fxLayout="column"
+            fxLayoutAlign="start">
+            <div fxFlex="0 0 100%" fxLayout="row wrap" fxLayoutAlign="start">
+                <div id="friends-pending-column" fxFlex="0 0 50%" fxLayout="column" fxLayoutAlign="start">
+                    <div class="options-container " fxFlex="0 0 2em" *ngFor="let friend of friends" fxLayout="row wrap"
+                        fxLayoutAlign="start">
+                        <div fxLayout="row" fxFlex="auto" fxLayoutAlign="start">
+                            <button mat-mini-fab color="accent">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+
+                        <div class="name-label add-icon" fxLayout="row center" fxFlex="auto" fxLayoutAlign="end">
+                            <div fxLayout="column" fxFlex="auto" fxLayoutAlign="center">
+                                {{friend.UserName}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="friends-column" fxFlex="0 0 50%" fxLayout="column" fxLayoutAlign="start">
+                    <div id="friends-header" fxFlex="0 0 2em" fxLayout="row wrap" fxLayoutAlign="center">
+                        <div class="name-label" fxLayout="row center" fxFlex="auto" fxLayoutAlign="end">
+
+                            <div fxLayout="column" fxFlex="auto" fxLayoutAlign="center">
+                                Friends
+                            </div>
+                        </div>
+                    </div>
+                    <div class="friend-row" fxFlex="0 0 2em" *ngFor="let pFriend of pendingFriends" fxLayout="row wrap"
+                        fxLayoutAlign="start">
+
+                        <div class="name-label" fxLayout="row center" fxFlex="0 0 90%" fxLayoutAlign="end">
+                            <div class="add-icon" fxLayout="column stretch" fxFlex="auto" fxLayoutAlign="center" (click)="createOrGetConversation(pFriend.id)">
+
+                                <button fxLayout="row" fxFlex="auto" fxLayoutAlign="center" mat-mini-fab color="accent">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <span>talk to friend</span>
+                            </div>
+
+                            <div fxLayout="column stretch" fxFlex="auto" fxLayoutAlign="center">
+
+
+                                <div fxLayout="column stretch" fxFlex="auto" fxLayoutAlign="center">
+                                    {{pFriend}}
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

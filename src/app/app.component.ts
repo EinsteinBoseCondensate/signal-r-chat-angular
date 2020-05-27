@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSidenav, MatDrawerToggleResult } from '@angular/material/sidenav';
-import { AuthService } from './services/authService';
+import { AuthService } from './modules/shared-services/auth/authService';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +17,26 @@ export class AppComponent implements OnInit {
 
   constructor(authService: AuthService) {
     this.authService = authService;
+    this.isUserLogged = undefined;
   }
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     //launch-auth-localStorage-tokenServer-check-process
-    this.authService.loginSuccess.subscribe(this.loginSuccess());
+    this.authService.loginSuccess.subscribe(this.loginSuccessHandler());
+    this.authService.onLogout.subscribe(this.onLogOutHandler());
   }
-  loginSuccess() {
+  loginSuccessHandler() {
     return (a: string) => {
-      console.log(a);
       this.isUserLogged = true;
       this.username = a;
     }
+
+  }
+  onLogOutHandler() {
+    return () => {
+      this.isUserLogged = false;
+      this.username = undefined;
+    }
+    
   }
 
 }

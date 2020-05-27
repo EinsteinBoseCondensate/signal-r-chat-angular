@@ -1,26 +1,64 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/theming';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+ 
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$candy-app-primary: mat-palette($mat-blue-gray);
+$candy-app-accent:  mat-palette($mat-deep-orange, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-pink);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+
+/* Add application styles & imports to this file! */
 /* You can add global styles to this file, and also import other style files */
-html {
-    overflow-y: hidden;
+* {
+  box-sizing: border-box;
 }
+
 /* width */
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px grey; 
-    border-radius: 1px;
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 3px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: rgba(209, 171, 171, 0.835); 
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #e0cdcd8e; 
 }
+html {
+    
+    
+    background: rgba(226,226,226,1) no-repeat center center fixed !important;
+    background: -moz-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 51%, rgba(254,254,254,1) 100%) no-repeat center center fixed !important;
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(226,226,226,1)), color-stop(51%, rgba(209,209,209,1)), color-stop(51%, rgba(219,219,219,1)), color-stop(100%, rgba(254,254,254,1))) no-repeat center center fixed !important;
+    background: -webkit-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 51%, rgba(254,254,254,1) 100%) no-repeat center center fixed !important;
+    background: -o-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 51%, rgba(254,254,254,1) 100%) no-repeat center center fixed !important;
+    background: -ms-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 51%, rgba(254,254,254,1) 100%) no-repeat center center fixed !important;
+    background: linear-gradient(135deg, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 51%, rgba(254,254,254,1) 100%) no-repeat center center fixed !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
+}
+

@@ -1,51 +1,49 @@
 import { HttpHeaders } from '@angular/common/http';
 
 
-const BaseEndpoint = "http://192.168.8.117:5000/";//43.32:5001/";
+const BaseEndpoint = "http://192.168.8.108:5000/";//43.32:5001/";
 export const EndPoints =  {
-  Register: BaseEndpoint+"api/Users/register",
-    Login: BaseEndpoint+"api/Users/authenticate",
-    SignalR : BaseEndpoint+"/chats",
+  Register: `${BaseEndpoint}api/Users/register`,
+    Login: `${BaseEndpoint}api/Users/authenticate`,
+    SignalR : `${BaseEndpoint}chats`,
+    FetchUsers: `${BaseEndpoint}api/Users/FindUsers`,
+    TestToken: `${BaseEndpoint}api/ChecksOnBoot/testToken`
     // dislikeEndpoint : BaseEndpoint+"api/Youtube/Dislike",
     // downAudioEndpoint : BaseEndpoint+"api/Youtube/GetAudio",
     // downVideoEndpoint : BaseEndpoint+"api/Youtube/DownVideo"
 };
-const header = {
-    headers : new HttpHeaders({
-        method:'POST',
-        Content:'application/json'
-    })
-};
-const simpleJsonContentHeader = new HttpHeaders({
+
+export const jsonHeaders = new HttpHeaders({
   'Content-Type': 'application/json',
-  'method' : 'POST'
+  'Response-Type': 'application/json'
 });
-const headerData = (data: object) => {
-  return {
-    headers: new HttpHeaders({
-      method: 'POST',
-      Content: 'application/json'
-    })
-  }
-};
-
-export const AppHeaders =  {
-    GetHeader: {
-      headers: new HttpHeaders({
-        method:'GET',
-        responseType: 'application/json'
-    })
-  },
-    PostJsonContentTypeHeader: header,
-    PostJsonContentTypeHeaderPassParam: headerData,
-    SimpleJsonContentHeader: simpleJsonContentHeader
-
+export const plainTextHeaders = new HttpHeaders({
+  'Content-Type': 'text/plain; charset=UTF-8',
+  'Response-Type': 'text/plain; charset=UTF-8'
+});
+export const plainTextAuthHeaders = new HttpHeaders({
+  'Content-Type': 'text/plain; charset=UTF-8',
+  'Response-Type': 'text/plain; charset=UTF-8',
+  'Bearer': localStorage.getItem("Bearer")
+});
+export const jsonAuthHeaders = new HttpHeaders({
+  'Content-Type': 'application/json',
+  'Response-Type': 'application/json',
+  'Authorization': `Bearer ${localStorage.Bearer}`
+});
+export const jsonAuthHeadersObj = {
+  'Content-Type': 'application/json',
+  'Response-Type': 'application/json',
+  'Authorization': `Bearer ${localStorage.Bearer}`
 };
 export const BlobRequestOptions = () => {
- return {headers: simpleJsonContentHeader, responseType: 'blob' as 'json' }
+ return {headers: jsonHeaders, responseType: 'blob' as 'json' }
+}
+export const plainTextAuthOpts = () => {
+  return {headers: plainTextAuthHeaders, responseType: 'text/plain' }
 }
 export const JsonPostOptions = () => {
-    return {headers: simpleJsonContentHeader, responseType: 'json' }
+    return {headers: jsonHeaders, responseType: 'json' }
 }
 export const YoutubeConstants = {
     baseEmbed: 'https://www.youtube.com/embed/'

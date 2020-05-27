@@ -1,0 +1,226 @@
+
+
+/* Add application styles & imports to this file! */
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(209, 171, 171, 0.835); 
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #e0cdcd8e; 
+}
+
+
+.single-chat{
+  padding: 1px;
+    background: rgba(46, 0, 59, 0.3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mat-grid-list, mat-grid-tile .mat-figure {
+    justify-content: flex-start !important ;
+    align-items: flex-start !important;
+ }
+.main-form{
+    position:relative;
+    height: -webkit-fit-available;
+    
+    height:87vh;
+
+}
+.inner-lef-chat-panel{
+    width: 100%;
+    height:100% !important;
+    overflow: hidden;
+}
+.message-box-header{
+
+}
+.header-container{
+    width:10%;
+}
+.input-right-margin{
+    width:100%;
+    margin-right:10%;
+}
+.top-chat-panel{
+    height:10%;
+    background-color: darken($color: #ffb8b8, $amount: 0);
+}
+.left-chat-panel{
+    flex-grow: 1;
+    overflow: auto;
+    height:100%;
+    background-color: darken($color: #9e676796, $amount: 0);
+}
+.right-chat-panel{
+    background-color: darken($color: #2b50a7c2, $amount: .7);
+    height: 90% !important;
+    overflow: auto;
+}
+.bottom-chat-panel{
+    background-color: darken($color: #69a736ad, $amount: .7);
+    height: 10% !important;
+    
+}
+.name-label{
+    width:100%;
+}
+.splitted-in-row{
+  width:50% !important;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    border: 2px solid #c141f4;
+}
+
+
+
+
+
+
+
+
+
+
+* {
+    box-sizing: border-box;
+  }
+  
+  h1, h4 {
+    margin: 5px;
+  }
+  
+  h3 {
+    color: black;
+  }
+  
+  .item-content h1 {
+    margin: 0px;
+    color: #ff4081;
+  }
+  
+  h4 {
+    margin: 0px;
+  }
+  
+  .top-controls-container {
+    background-color: #bdb8b852;
+    border-radius: 3px;
+  }
+  
+  .items-controls-container {
+    flex-grow: 1;
+    overflow: hidden;
+    height:100%;
+    background-color: #bdb8b894;
+    border-radius: 3px;
+    width:100%;
+  }
+  
+  .content {
+    background-color: #bdb8b852;
+    border-radius: 3px;
+    overflow: auto scroll !important;
+  }
+  
+  .mat-raised-button {
+    margin: 5px;
+  }
+  
+  .mat-input-element {
+    color: #2196f3;
+  }
+  
+  .options-container {
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    padding-left:10px;
+  }
+  
+  .active {
+    background-color: cyan;
+  }
+  
+  .item {
+    background: #ff4081;
+    border-radius: 3px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 2px;
+  }
+  .name-label{    
+    align-items: center !important;
+  }
+  .items-input {
+    padding: 5px;
+  }
+  
+  :host ::ng-deep .mat-select-value-text span {
+    color: #2196f3 !important;
+  }
+  :host ::ng-deep .mat-form-field-label {
+    color: black;
+  }
+  
+  .axis-title, .axis-title p {
+      color: rgb(233, 30, 99);
+      font-size: 20px;
+  }
+  
+  
+
+
+
+
+
+
+  
+#message-container{
+  border-radius: 5px;
+  padding:2px;
+  background-color: rgba($color: #a3dd61, $alpha: 1.0);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 7px 0 rgba(0, 0, 0, 0.19);
+}
+.message-wrapper{
+  padding:2px;
+}

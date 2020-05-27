@@ -10,7 +10,7 @@ $toolbarHeight: 64px;
     position: absolute;
 }
 .main-own-toolbar {
-    background-image: linear-gradient(to right, rgba(156, 133, 133, 0.467), rgb(255, 102, 0));
+    background-image: linear-gradient(to right, rgba(60, 17, 73, 0.5), rgb(255, 102, 0));
 }
 .mine-sidenav {
     position: relative;
@@ -24,6 +24,11 @@ $toolbarHeight: 64px;
     &::-webkit-scrollbar {
         display: none;
     }
+}
+.main-child{
+    
+    height:87vh;
+
 }
 .sideNavButton {
     z-index: inherit -1;

@@ -1,0 +1,62 @@
+<div class="main-form" fxLayout="row wrap">
+    <div class="top-controls-container top-chat-panel" fxFlex="1 1 100%" fxLayout="row wrap" fxLayoutAlign="center">
+        <div class="message-box-header" fxFlex="1 1 00%" fxLayout="column" fxLayoutAlign="center">
+            <!-- <mat-form-field appearance="fill" fxFlex="1 1 30%" class="input-right-margin"
+                [floatLabel]="floatLabelControl.value">
+                <mat-label id="message-box-label">Write your message...</mat-label>
+                <input matInput id="userSearch" #userSearch (change)="waitAndSearch(userSearch.value)">
+            </mat-form-field> -->
+
+        </div>
+        <div class="flex-flow-container header-container" fxFlex="1 1 100%" fxLayout="column " fxLayoutAlign="center">
+            <div class="" fxFlex="1 1 100%" fxLayout="row wrap" fxLayoutAlign="stretch">
+                <div class="" fxFlex="0 0 25%" fxLayout="column" fxLayoutAlign="center">
+                    {{'Chats'}}
+                </div>
+                <div class="" fxFlex="0 0 75%" fxLayout="column" fxLayoutAlign="center">
+                    {{ currentGroup != undefined ? currentGroup.name : 'Select a chat' }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="items-controls-container content inner-lef-chat-panel" fxFlex="0 0 25%" fxLayout="column"
+        fxLayoutAlign="start">
+        <div class="options-container single-chat" fxFlex="0 0 60px" fxLayout="row stretch" fxLayoutAlign="start"
+            *ngFor="let item of items">
+            <div fxFlex="1 1 100%" fxLayout="column stretch" fxLayoutAlign="start" (click)="switchConversation(item)">
+                <app-chat-row fxFlex="1 1 100%" fxLayout="row stretch" [Group]="item"></app-chat-row>
+            </div>
+        </div>
+
+    </div>
+    <div class="items-controls-container inner-right-chat-panel" fxFlex="0 0 75%" fxLayout="column"
+        fxLayoutAlign="start">
+        <div class="options-container right-chat-panel" fxFlex="0 0 85%" fxLayout="row wrap" fxLayoutAlign="start">
+            
+                <div class="message-wrapper" fxFlex="0 0 auto" fxLayout="column" fxLayoutAlign="start" *ngIf="messages != undefined">
+                    <div [id]="'message-container'" fxFlex="0 0 auto"
+                        fxLayout="row wrap" [fxLayoutAlign]=" isMine(msg) ? 'end' : 'start'" *ngFor="let msg of messages">
+                        <app-message [msg]="msg"></app-message>
+                    </div>
+                </div>
+                <div class="" fxFlex="0 0 100%" fxLayout="column" fxLayoutAlign="start" *ngIf="messages == undefined">
+            </div>
+        </div>
+        <div class="options-container bottom-chat-panel" fxFlex="0 0 15%" fxLayout="row wrap" fxLayoutAlign="start">
+            <div class="message-box" fxFlex="1 1 80%" fxLayout="column" fxLayoutAlign="start">
+                <mat-form-field appearance="fill" fxFlex="1 1 100%" class="input-right-margin"
+                    [floatLabel]="floatLabelControl.value">
+                    <mat-label id="message-box-label">Write your message...</mat-label>
+                    <input matInput id="username" #username>
+                </mat-form-field>
+
+            </div>
+            <div class="submit-box" fxFlex="1 1 20%" fxLayout="column end" fxLayoutAlign="start">
+                <button mat-mini-fab fxFlex="0 0 auto" color="accent" (click)="submitMessage(username.value);">
+                    <mat-icon>label_important</mat-icon>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

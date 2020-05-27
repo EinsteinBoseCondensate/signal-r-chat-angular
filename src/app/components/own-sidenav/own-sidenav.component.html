@@ -1,21 +1,29 @@
 <mat-toolbar class="main-own-toolbar">
-    <p> <button mat-icon-button class="toggler sideNavButton" (click)="sidenav.toggle(); ">></button></p>
-    <span routerLink="" (click)="sidenav.close();"><p>SignalR CHATS</p></span>
-    <span class="my-separator"> </span>
-    <p class="right-legend" style="color:blanchedalmond">{{isUserLogged ? username : '$$$'}}</p>
-  </mat-toolbar>
-  <mat-sidenav-container fullscreen class="mine-sidenav-container">
-    <mat-sidenav #sidenav mode="push" id="lateral-drawer-wrapper-mine" (opened)="toggleArrow();"
-      (closed)="toggleArrow();">
-      <div class="lateral-mine-drawer">
-        <span (click)="sidenav.toggle();"><a [routerLink]="['/access']">Log in - Register</a></span>
-        <br/>
+  <p> <button mat-icon-button class="toggler sideNavButton" (click)="sidenav.toggle(); ">></button></p>
+  <span [routerLink]="['/access']" (click)="sidenav.close();">
+    <p>SignalR CHATS</p>
+  </span>
+  <span class="my-separator"> </span>
+  <p class="right-legend" style="color:blanchedalmond">{{isUserLogged ? username : '$$$'}}</p>
+  <span *ngIf="isUserLogged" class="right-legend" [routerLink]="['/access']" (click)="logOut();">
+    <p>Log out</p>
+  </span>
+</mat-toolbar>
+<mat-sidenav-container fullscreen class="mine-sidenav-container">
+  <mat-sidenav #sidenav mode="push" id="lateral-drawer-wrapper-mine" (opened)="toggleArrow();"
+    (closed)="toggleArrow();">
+    <div class="lateral-mine-drawer">
+      <span (click)="sidenav.toggle();"><a [routerLink]="['/access']">Log in - Register</a></span>
+      <br />
+      <div *ngIf="isUserLogged">
         <span (click)="sidenav.toggle();"><a [routerLink]="['/chats']">Chats</a></span>
+        <span (click)="sidenav.toggle();"><a [routerLink]="['/chats/amigos']">Find friends</a></span>
       </div>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="main-child mat-app-background">
-        <router-outlet ></router-outlet>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="main-child mat-app-background">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
