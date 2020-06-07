@@ -16,11 +16,9 @@ export class JwtService {
             if(!this.decoded_token){
                 this.decoded_token = jwt_decode(this.sLS.secureLS.get("Bearer"));
             }
-            console.log(JSON.stringify(this.decoded_token));
             return this.decoded_token;
         }
         catch (e) {
-            console.log(JSON.stringify(e));
             return undefined;
         }
     }
@@ -37,5 +35,8 @@ export class JwtService {
         } catch (e) {
             return undefined;
         }
+    }
+    deleteCachedToken(){
+        this.decoded_token = undefined;
     }
 }

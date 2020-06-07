@@ -47,6 +47,8 @@
         <div class="items-controls-container inner-right-chat-panel" [fxFlex]="fxFlexForRightColumn" fxLayout="column"
             fxLayoutAlign="start">
             <div fxFlex="0 0 100%" fxLayout="row wrap" fxLayoutAlign="start">
+
+                
                 <div id="friends-pending-column" fxFlex="0 0 50%" fxLayout="column" fxLayoutAlign="start">
                     <div class="options-container " fxFlex="0 0 2em" *ngFor="let friend of friends" fxLayout="row wrap"
                         fxLayoutAlign="start">
@@ -90,7 +92,7 @@
 
 
                                 <div fxLayout="column stretch" fxFlex="auto" fxLayoutAlign="center">
-                                    {{pFriend}}
+                                    {{pFriend.friendName}}
                                 </div>
 
                             </div>

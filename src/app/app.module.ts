@@ -28,7 +28,7 @@ import { MessageComponent } from './modules/chat/components/message/message.comp
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ChatModule,
+    ChatModule.forRoot(),
     MaterialSelectedModule,
     SharedServicesModule.forRoot()
   ],

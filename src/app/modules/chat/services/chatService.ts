@@ -6,10 +6,12 @@ import { delay } from '../../shared-services/helpers/timer';
 import { SearchUser, SearchUserRequest } from '../components/chats/model/searchUserModel';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../shared-services/auth/authService';
-import { Group } from 'src/app/models/Backend/user-lazy-loaded';
+import { Group, InitialLoad, User } from 'src/app/models/Backend/user-lazy-loaded';
 import { SecureLsService } from '../../shared-services/helpers/secure-ls';
 import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
+import { FirstMessageModel } from 'src/app/models/Backend/first-message-model';
+import { GuidTuple } from 'src/app/models/Backend/ack-messages';
 
 
 @Injectable({
@@ -22,8 +24,11 @@ export class ChatService {
     @Output() onUsersFetchAvailable;
     @Output() onConversationCreation;
     @Output() onConversationSummoned;
+    @Output() onMessageSubmittedOk;
+    @Output() onMessageReceived;
     private isWaitingToFetchUsers: boolean;
-
+    private isNavigationFromFriendsList: boolean;
+    private navigatingToGroup: Group;
     isUserLogged: boolean;
     constructor(private signalRService: SignalRService,
                 private httpClient: HttpClient,
@@ -34,14 +39,24 @@ export class ChatService {
         this.onSignalRhubDisconnection = new EventEmitter();
         this.onUsersSearchResult = new EventEmitter<SearchUser[]>();
         this.onUsersFetchAvailable = new EventEmitter();
+        this.onMessageReceived = new EventEmitter();
         this.onConversationCreation = new EventEmitter<Group>();
         this.onConversationSummoned = new EventEmitter<Group>();
+        this.onMessageSubmittedOk = new EventEmitter<GuidTuple>();
         this.isWaitingToFetchUsers = false;
         this.signalRService.connectionEstablished.subscribe((arg: boolean) => this.onSignalRhubConnection.emit(arg));
+        this.signalRService.messageSavedSentOk.subscribe((p: GuidTuple) => this.onMessageSubmittedOk.emit(p));
+        this.signalRService.messageReceived.subscribe(mr => this.onMessageReceived.emit(mr));
     }
 
-    sendMessage(msg: chatmsg) {
-        this.signalRService.sendChatMessageToGroup(msg.msg, msg.groupId)
+    sendMessage(msg: any, id:Guid) {
+        this.signalRService.sendChatMessageToGroup(msg, id)
+    }
+    setAlreadyReceivedIn(group: Group){
+        //this.signalRService.
+    }
+    sendFirstMessage(){
+        this.signalRService.sendFirstGroupMessage({} as FirstMessageModel);
     }
     async waitAndFetchUserNames(arg: string, bypassDelay: boolean = false) {
         if (this.isWaitingToFetchUsers || arg == "") {
@@ -80,13 +95,25 @@ export class ChatService {
     }
 
     manageSummonedConversationState(conversation: Group){
+        this.isNavigationFromFriendsList = true;
+        this.navigatingToGroup = conversation;
         this.router.navigate(['/chats']);
-        this.onConversationSummoned.emit(conversation);
     }
     manageNewConversationState(group: Group){
         this.router.navigate(['/chats']);
         this.onConversationCreation.emit(group);
     }
-    
-
+    getCurrentGroupUserByGroupId(groupId: Guid): User{
+        return (this.sLS.secureLS.get("IL") as InitialLoad).groups.find(g => g.id == groupId).groupUsers.find(gu => gu.userName == this.authService.jwtService.getUserNameFromToken());
+    }
+    isNavigation(){
+        return this.isNavigationFromFriendsList;
+    }
+    getNavigatingToGroup(){
+        return this.navigatingToGroup;
+    }
+    resetNavigationFlags(){
+        this.isNavigationFromFriendsList = false;
+        this.navigatingToGroup = undefined;
+    }
 }

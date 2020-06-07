@@ -31,10 +31,23 @@
 
 .single-chat{
   padding: 1px;
-    background: rgba(46, 0, 59, 0.3);
+    background: rgba(58, 94, 255, 0.3);
+    max-width: 100%;
 }
 
 
+#message-container{
+  max-width: min-content !important;
+  min-width: 30%;
+  margin-bottom: .15em;
+}
+
+.own{
+  align-self: flex-end !important;
+  color: white;
+  background-color: #733d92 !important;
+  border-bottom-left-radius: 0px !important;
+}
 
 
 
@@ -91,7 +104,7 @@ mat-grid-list, mat-grid-tile .mat-figure {
     background-color: darken($color: #9e676796, $amount: 0);
 }
 .right-chat-panel{
-    background-color: darken($color: #2b50a7c2, $amount: .7);
+    background-color: rgba(139, 142, 148, 0.7607843137);
     height: 90% !important;
     overflow: auto;
 }
@@ -173,8 +186,7 @@ ul {
   .options-container {
     text-align: center;
     vertical-align: middle;
-    overflow: hidden;
-    padding-left:10px;
+    overflow: auto;
   }
   
   .active {
@@ -216,10 +228,13 @@ ul {
 
   
 #message-container{
-  border-radius: 5px;
+  border-radius: .6em;
   padding:2px;
   background-color: rgba($color: #a3dd61, $alpha: 1.0);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 7px 0 rgba(0, 0, 0, 0.19);
+}
+.foreign{
+  border-bottom-right-radius: 0px !important;
 }
 .message-wrapper{
   padding:2px;

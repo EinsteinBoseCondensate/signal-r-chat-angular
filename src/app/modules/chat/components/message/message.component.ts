@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Message } from 'src/app/models/Backend/user-lazy-loaded';
+import { JwtService } from 'src/app/modules/shared-services/auth/jwt-service';
 
 @Component({
   selector: 'app-message',
@@ -8,9 +9,9 @@ import { Message } from 'src/app/models/Backend/user-lazy-loaded';
 })
 export class MessageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private jwtService: JwtService) { }
   @Input() msg: Message;
-  
+  userName
   ngOnInit(): void {
   }
 

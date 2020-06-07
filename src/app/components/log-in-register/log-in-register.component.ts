@@ -14,7 +14,9 @@ export class LogInRegisterComponent implements OnInit {
   options: FormGroup;
   hideRequiredControl = new FormControl(false); 
   floatLabelControl = new FormControl('always');
-
+  userName: string;
+  password: string;
+  email: string;
   isLogin: boolean;
   constructor(fb: FormBuilder, authService: AuthService) {
     this.authService = authService;
@@ -35,9 +37,9 @@ export class LogInRegisterComponent implements OnInit {
   }
   user(): UserLogin {
     return {
-      UserName: (document.querySelector('#username') as HTMLInputElement).value,
-      Password: (document.querySelector('#password') as HTMLInputElement).value,
-      Email: this.isLogin ? "" : (document.querySelector('#email') as HTMLInputElement).value
+      UserName: this.userName,
+      Password: this.password,
+      Email: this.isLogin ? "" : this.email
     } as UserLogin
   }
 

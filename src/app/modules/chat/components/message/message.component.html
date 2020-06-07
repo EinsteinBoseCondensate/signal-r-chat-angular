@@ -1,17 +1,19 @@
 <div  fxFlex="1 1 100%" fxLayout="column stretch" fxLayoutAlign="start">    
-    <div id="message-top" fxFlex="1 1 30%" fxLayout="row end" fxLayoutAlign="start">
+    <div id="message-top" fxFlex="1 1 auto" fxLayout="row end" fxLayoutAlign="start">
         <div fxFlex="1 1 100%" fxLayout="column wrap" fxLayoutAlign="end">
             <div id="message-author" fxFlex="1 1 100%" fxLayout="row wrap">
                 {{ (msg.creatorName != '' && msg.creatorName != undefined && msg.creatorName != null) ? msg.creatorName : '' }}
             </div>
         </div>
     </div>
-    <div id="message-bottom" fxFlex="1 1 70%" fxLayout="row wrap" fxLayoutAlign="end">
-        <div id="message-content" fxFlex="1 1 70%" fxLayout="column wrap start" fxLayoutAlign="end">
+    <div id="message-bottom" fxFlex="1 1 auto" fxLayout="row wrap" fxLayoutAlign="end">
+        <div id="message-content" fxFlex="1 1 auto" fxLayout="column wrap start" fxLayoutAlign="end" style="text-align: start;">
             {{ msg.content }}
         </div>
-        <div id="message-date" fxFlex="1 1 30%" fxLayout="column wrap" fxLayoutAlign="end">
+        <div id="message-date" fxFlex="1 1 auto" fxLayout="column wrap" fxLayoutAlign="end">
+            <div class="date-inner" fxLayout="row stretch" fxLayoutAlign="end">
             {{ msg.created }}
+        </div>
         </div>
     </div>
 </div>

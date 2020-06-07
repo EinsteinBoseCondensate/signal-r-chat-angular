@@ -22,25 +22,24 @@
     <div class="items-controls-container content inner-lef-chat-panel" fxFlex="0 0 25%" fxLayout="column"
         fxLayoutAlign="start">
         <div class="options-container single-chat" fxFlex="0 0 60px" fxLayout="row stretch" fxLayoutAlign="start"
-            *ngFor="let item of items">
+            *ngFor="let item of items" style="max-width: 100%;">
             <div fxFlex="1 1 100%" fxLayout="column stretch" fxLayoutAlign="start" (click)="switchConversation(item)">
-                <app-chat-row fxFlex="1 1 100%" fxLayout="row stretch" [Group]="item"></app-chat-row>
+                <app-chat-row class="single-chat" fxFlex="1 1 100%" fxLayout="row stretch" [Group]="item" style="max-width: 100%;"></app-chat-row>
             </div>
         </div>
 
     </div>
     <div class="items-controls-container inner-right-chat-panel" fxFlex="0 0 75%" fxLayout="column"
         fxLayoutAlign="start">
-        <div class="options-container right-chat-panel" fxFlex="0 0 85%" fxLayout="row wrap" fxLayoutAlign="start">
+        <div class="options-container right-chat-panel" scrollBottom fxFlex="0 0 85%" fxLayout="row wrap" fxLayoutAlign="start">
             
-                <div class="message-wrapper" fxFlex="0 0 auto" fxLayout="column" fxLayoutAlign="start" *ngIf="messages != undefined">
-                    <div [id]="'message-container'" fxFlex="0 0 auto"
-                        fxLayout="row wrap" [fxLayoutAlign]=" isMine(msg) ? 'end' : 'start'" *ngFor="let msg of messages">
-                        <app-message [msg]="msg"></app-message>
+                <div class="message-wrapper" fxFlex="0 0 100%" fxLayout="column">
+                    <div #allTheseThings [class]=" isMine(msg) ? 'own' : 'foreign'" [id]="'message-container'" fxFlex="0 0 auto"
+                        [fxLayout]="'row wrap'" fxLayoutAlign="start" *ngFor="let msg of messages">
+                        <app-message [msg]="msg" style="width: 100%;"></app-message>
                     </div>
                 </div>
-                <div class="" fxFlex="0 0 100%" fxLayout="column" fxLayoutAlign="start" *ngIf="messages == undefined">
-            </div>
+                
         </div>
         <div class="options-container bottom-chat-panel" fxFlex="0 0 15%" fxLayout="row wrap" fxLayoutAlign="start">
             <div class="message-box" fxFlex="1 1 80%" fxLayout="column" fxLayoutAlign="start">

@@ -16,15 +16,15 @@
             <form [formGroup]="options">
                 <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
                     <mat-label>Username</mat-label>
-                    <input matInput id="username">
+                    <input matInput id="username" [(ngModel)] = "userName" [ngModelOptions] ="{standalone : true}">
                 </mat-form-field>
                 <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
                     <mat-label>Password</mat-label>
-                    <input matInput id="password">
+                    <input matInput id="password" [(ngModel)] = "password" [ngModelOptions] ="{standalone : true}">
                 </mat-form-field>
                 <mat-form-field *ngIf="!isLogin" appearance="" [floatLabel]="floatLabelControl.value">
                     <mat-label>Email</mat-label>
-                    <input matInput type="email" id="email">
+                    <input matInput type="email" id="email" [(ngModel)] = "email" [ngModelOptions] ="{standalone : true}">
                 </mat-form-field>
                 <!-- <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
                     [floatLabel]="floatLabelControl.value">

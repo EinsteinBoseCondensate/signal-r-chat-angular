@@ -13,6 +13,7 @@ import { ChatsComponent } from '../components/chats/chats.component';
 import { SharedServicesModule } from '../../shared-services/shared-services.module';
 import { MessageComponent } from '../components/message/message.component';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
+import { ScrollBottomDirective } from '../directives/scroll-bottom-directive';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ModuleWithProviders } from '@angular/compiler/src/core';
     MessageComponent,
     ChatRowComponent,
     ChatsComponent,
-    MainComponent,
+    MainComponent,    
+    ScrollBottomDirective,
     FriendsComponent],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { ModuleWithProviders } from '@angular/compiler/src/core';
     MessageComponent,
     ChatRowComponent,
     ChatsComponent,
-    MainComponent,
+    MainComponent,    
+    ScrollBottomDirective,
     FriendsComponent],
   providers:[
     ChatService,

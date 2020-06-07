@@ -1,3 +1,16 @@
 #last-message{
     font-size: small;
+    display: block !important;
+    width:80%;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#conversation-title,
+.conversation-title,
+#comp-cont,
+.last-message
+{
+    max-width: 100%;
 }

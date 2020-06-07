@@ -33,7 +33,6 @@ export class FriendsComponent implements OnInit {
       floatLabel: this.floatLabelControl,
     });
   }
-
   ngOnInit(): void {
     this.chatService.onUsersSearchResult.subscribe((data: any[]) => {
       try {
@@ -42,7 +41,7 @@ export class FriendsComponent implements OnInit {
           this.fxFlexForLeftColumn = "0 0 25%";
           this.fxFlexForRightColumn = "0 0 75%";
         }else{
-          this.snackBarService.openSnackBar("Search yelded no results", "GO GTA V SON");
+          this.snackBarService.openSnackBar("Search yielded no results", "GO GTA V SON");
         }
       } catch (e) {
         console.log(`Exception at processing fetched users \n ${JSON.stringify(e)}\n${JSON.stringify(data)}`)
@@ -51,20 +50,20 @@ export class FriendsComponent implements OnInit {
     this.friends = this.authService.sLS.secureLS.get("IL").frienships.filter(f => !f.pending) as Friendship[];
    
     this.pendingFriends = this.authService.sLS.secureLS.get("IL").frienships.filter(f => f.pending) as Friendship[];
-    console.log(JSON.stringify(this.pendingFriends));
   }
   async waitAndSearch(arg: string) {
     await this.chatService.waitAndFetchUserNames(arg);
   }
   createOrGetConversation(friend: Friendship){
+    console.log(JSON.stringify(friend));
     let conversation: Group = this.authService.sLS.secureLS.get("IL").groups
-                          .filter((g: Group) => g.groupUsers.length == 2 
-                          && g.groupUsers.map((u: User) => u.id).indexOf(friend.id))[0];
+                          .find((g: Group) => g.groupUsers.length == 2 
+                          && g.groupUsers.map((u: User) => u.userName).indexOf(friend.friendName) != -1);//Take it from in memory groups             
     if(conversation != undefined ){
       this.chatService.manageSummonedConversationState(conversation);
     }else{
       //CREATE IN-MEMORY REPRESENTATION OF GROUP/CONVERSATION AND STORE IT IN DB WHEN FIRST MESSAGE IS SENT
-      this.chatService.manageNewConversationState({ name: friend.friendName, groupUser: [{ id: this.authService.jwtService.getIdFromToken() }, { id: friend.id }] as unknown as User[] } as unknown as Group);
+      this.chatService.manageNewConversationState({ name: friend.friendName, groupUser: [this.authService.getUser(), { id: friend.id, userName: friend.friendName }] as unknown as User[] } as unknown as Group);
     }
   }
   addFriend(id: Guid){

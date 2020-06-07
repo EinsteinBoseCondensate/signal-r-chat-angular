@@ -6,6 +6,8 @@
 #message-content{
     padding:2px;
     font-size: medium;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 #message-date{
     font-size: small;

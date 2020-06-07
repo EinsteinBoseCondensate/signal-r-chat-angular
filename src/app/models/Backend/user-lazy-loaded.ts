@@ -8,11 +8,14 @@ export interface Group{
 }
 export interface MessageUser{
     realMsg: Message,
-    user: User
+    user: User,
+    pendingSend: boolean,
+    pendingReceive: boolean
 }
 export interface Message{
     content: string,
     created: string,
+    realCreated: Date,
     creatorName: string,
     isMine: boolean,
     id:Guid

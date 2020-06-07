@@ -1,15 +1,15 @@
-<div fxFlex="1 1 100%" fxLayout="column stretch" fxLayoutAlign="start">
-    <div id="conversation-title" fxFlex="1 1 70%" fxLayout="row wrap" fxLayoutAlign="start">
-        <div class="conversation-title" fxFlex="1 1 70%" fxLayout="column wrap" fxLayoutAlign="start">
+<div id="comp-cont" fxFlex="1 1 100%" fxLayout="column stretch" fxLayoutAlign="start" style="max-width: 100%;">
+    <div id="conversation-title" fxFlex="1 1 auto" fxLayout="row wrap" fxLayoutAlign="start" style="max-width: 100%;">
+        <div class="conversation-title" fxFlex="1 1 auto" fxLayout="column wrap" fxLayoutAlign="start">
             {{ Group.name }}
         </div>
-        <div class="last-message-time" fxFlex="1 1 30%" fxLayout="column wrap" fxLayoutAlign="start">
+        <div class="last-message-time" fxFlex="1 1 auto" fxLayout="column wrap" fxLayoutAlign="start">
             {{ Group.messageUsers.length > 0 ? Group.messageUsers[0].realMsg.created : 'nardo'}}
         </div>
     </div>
-    <div class="last-message" fxFlex="1 1 30%" fxLayout="row end" fxLayoutAlign="end">
-        <div class="conversation-title" fxFlex="1 1 100%" fxLayout="column wrap" fxLayoutAlign="end">
-            <div id="last-message" fxFlex="1 1 100%" fxLayout="row wrap">
+    <div class="last-message" fxFlex="1 1 auto" fxLayout="row end" fxLayoutAlign="end" >
+        <div fxFlex="1 1 100%" fxLayout="column wrap" fxLayoutAlign="end">
+            <div id="last-message" >
                 {{ Group.messageUsers.length > 0 ? Group.messageUsers[0].realMsg.content : 'nardo'}}
             </div>
         </div>

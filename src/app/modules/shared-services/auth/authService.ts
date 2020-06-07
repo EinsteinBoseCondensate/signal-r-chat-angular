@@ -43,8 +43,8 @@ export class AuthService {
             await this.testToken();
         }
     }
-    getUser(){
-        return this.jwtService.getDecodedAccessToken();
+    getUser(): User{
+        return {id : this.jwtService.getIdFromToken(), userName: this.jwtService.getUserNameFromToken()} as User;
     }
     tryLoginRegister(user: UserLogin, isLogin: boolean) {
         this.isLogin = isLogin;

@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
 export class SecureLsService{
     public secureLS: SecureLS;
     constructor(){
-        this.secureLS = new SecureLS({encodingType:'aes', isCompression: true});
+        this.secureLS = new SecureLS({encodingType:'aes', isCompression: false});
     }
 }
