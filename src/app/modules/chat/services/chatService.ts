@@ -97,10 +97,10 @@ export class ChatService {
     manageSummonedConversationState(conversation: Group){
         this.isNavigationFromFriendsList = true;
         this.navigatingToGroup = conversation;
-        this.router.navigate(['/chats']);
+        //click UI element
     }
     manageNewConversationState(group: Group){
-        this.router.navigate(['/chats']);
+        //click UI element
         this.onConversationCreation.emit(group);
     }
     getCurrentGroupUserByGroupId(groupId: Guid): User{
