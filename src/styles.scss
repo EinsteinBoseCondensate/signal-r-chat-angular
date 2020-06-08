@@ -27,6 +27,11 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 * {
   box-sizing: border-box;
 }
+mat-tab-group,
+.mat-tab-body-wrapper,
+.mat-tab-body {
+    height: 100% !important;
+}
 
 /* width */
 ::-webkit-scrollbar {
@@ -35,19 +40,19 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 
 /* Track */
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 3px;
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.103); 
+    border-radius: 0px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgba(209, 171, 171, 0.835); 
+    background: rgba(124, 124, 124, 0.74); 
     border-radius: 3px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #e0cdcd8e; 
+    background: #1f1f1fb0; 
 }
 html {
     
